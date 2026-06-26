@@ -41,7 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 # Claude Design handoff bundle (kept locally for reference, not needed in repo)
-/_extracted/
+/_extracted*/
 *.zip
 
 # Claude Code local settings

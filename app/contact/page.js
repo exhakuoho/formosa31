@@ -7,7 +7,7 @@ import { STORE } from "@/lib/seedData";
 
 export const metadata = {
   title: "聯絡門市",
-  description: "FORMOSA31 唯誠鐘錶門市資訊：813 高雄市左營區明誠二路 505-4 號，07-558-0678，週一至週六 11:00–21:00。",
+  description: "FORMOSA31 唯誠鐘錶門市資訊：高雄市左營區明誠二路505-3號，07-5580678，service@formosa31.com，週一至週六 11:00–21:00。",
 };
 
 export default function ContactPage() {

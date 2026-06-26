@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import PlaceholderImage from "@/components/PlaceholderImage";
 import { Icon } from "@/components/Icons";
 import { resolveMarketingImage } from "@/lib/marketingImages";
-import { SERVICE_ITEMS, REPAIR_FLOW } from "@/lib/seedData";
+import { SERVICE_ITEMS, REPAIR_FLOW, FAQ } from "@/lib/seedData";
 
 export const metadata = {
   title: "門市專業服務",
@@ -100,24 +100,37 @@ export default function ServicesPage() {
         <div style={{ textAlign: "center", marginBottom: 54 }}>
           <div style={{ ...eyebrow, textAlign: "center" }}>Repair Process</div>
           <h2 style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 32, margin: "0 0 12px", letterSpacing: "1px" }}>清楚流程，安心送修</h2>
+          <p style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 15, color: "#AEB6C2", margin: 0 }}>檢測 → 報價 → 訂購零件 → 維修更換 → 組裝檢測 → 完成交件</p>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(330px,1fr))", gap: 18 }}>
-          {REPAIR_FLOW.map((f) => (
-            <div key={f.n} style={{ display: "flex", gap: 22, alignItems: "flex-start", border: "1px solid var(--line)", padding: "28px 26px" }}>
-              <span style={{ fontFamily: "var(--font-jost)", fontWeight: 300, fontSize: 30, color: "#C2A468", lineHeight: 1, flex: "none", width: 36 }}>{f.n}</span>
-              <div>
-                <div style={{ display: "flex", alignItems: "baseline", gap: 10, flexWrap: "wrap" }}>
-                  <span style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 500, fontSize: 18, letterSpacing: "0.5px" }}>{f.zh}</span>
-                  <span style={{ fontFamily: "var(--font-jost)", fontSize: 11, letterSpacing: 2, color: "#828D9C", textTransform: "uppercase" }}>{f.en}</span>
+        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: 10 }}>
+          {REPAIR_FLOW.map((f, i) => (
+            <div key={f.n} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <div style={{ width: 158, minHeight: 168, border: "1px solid var(--line)", background: "var(--ink)", padding: "26px 18px", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
+                <span style={{ width: 46, height: 46, borderRadius: "50%", border: "1px solid rgba(194,164,104,0.55)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-jost)", fontWeight: 300, fontSize: 22, color: "#C2A468" }}>{f.n}</span>
+                <div>
+                  <div style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 500, fontSize: 17, letterSpacing: "0.5px" }}>{f.zh}</div>
+                  <div style={{ fontFamily: "var(--font-jost)", fontSize: 10, letterSpacing: 1.5, color: "#828D9C", textTransform: "uppercase", marginTop: 3 }}>{f.en}</div>
                 </div>
-                <p style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 14, lineHeight: 1.85, color: "#AEB6C2", margin: "8px 0 0" }}>{f.desc}</p>
+                <p style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 12.5, lineHeight: 1.7, color: "#AEB6C2", margin: 0 }}>{f.desc}</p>
               </div>
+              {i < REPAIR_FLOW.length - 1 ? (
+                <span style={{ color: "rgba(194,164,104,0.6)", fontSize: 20, fontFamily: "var(--font-jost)", flex: "none" }}>→</span>
+              ) : null}
             </div>
           ))}
         </div>
-        <p style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 13, lineHeight: 1.9, color: "#828D9C", margin: "32px 0 0", maxWidth: 860 }}>
-          多數案件可於現場提供初步報價，並採維修完成後才收費的方式。實際維修時間會依品牌、零件供應與維修狀況而有所不同。
-        </p>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: 24, marginTop: 48, alignItems: "start" }}>
+          <p style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 14, lineHeight: 2.05, color: "#AEB6C2", margin: 0 }}>
+            FORMOSA31 重視維修流程的透明度，會依照腕錶狀況提供檢測與報價建議。多數案件可於現場提供初步報價，並採維修完成後才收費的方式。實際維修時間會依品牌、零件供應與維修狀況而有所不同。
+          </p>
+          <div style={{ border: "1px solid rgba(194,164,104,0.4)", borderLeft: "3px solid #C2A468", background: "rgba(194,164,104,0.05)", padding: "26px 28px" }}>
+            <div style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 500, fontSize: 16, letterSpacing: "0.5px", marginBottom: 4 }}>透明流程</div>
+            <div style={{ fontFamily: "var(--font-jost)", fontSize: 11, letterSpacing: 2, color: "#C2A468", textTransform: "uppercase", marginBottom: 12 }}>Transparent Process</div>
+            <p style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 13.5, lineHeight: 1.95, color: "#AEB6C2", margin: 0 }}>
+              讓客戶在維修前知道流程、費用與可能等待時間，降低「不知道會不會被亂收費」的不安感。
+            </p>
+          </div>
+        </div>
       </section>
 
       {/* after-sales */}
@@ -130,7 +143,7 @@ export default function ServicesPage() {
             服務從成交後開始
           </h2>
           <p style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 15, lineHeight: 2.1, color: "#AEB6C2", margin: "0 auto 30px", maxWidth: 760 }}>
-            凡於 FORMOSA31 購買腕錶，皆享有長期售後服務，包含錶帶調整、維修檢測與電池更換等服務。我們希望每一位顧客不只在購買當下安心，也能在日後配戴、保養與維修時，持續獲得專業支持。
+            凡於 FORMOSA31 購買腕錶，即享終生免費調整錶帶、維修檢測與電池更換服務。我們希望每一位顧客不只在購買當下安心，也能在日後配戴、保養與維修時，持續獲得專業支持。
           </p>
           <div style={{ display: "inline-flex", flexWrap: "wrap", gap: 10, justifyContent: "center", marginBottom: 24 }}>
             {["錶帶調整", "維修檢測", "電池更換"].map((t) => (
@@ -140,8 +153,29 @@ export default function ServicesPage() {
             ))}
           </div>
           <p style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 12, lineHeight: 1.85, color: "#6A7280", margin: "0 auto", maxWidth: 720 }}>
-            ＊實際服務內容依品牌、型號、零件狀況與現場檢測結果為準；特殊零件與耗材費用另依實際情況報價。
+            ＊實際服務內容依品牌、型號、零件狀況與現場檢測結果為準；特殊零件、耗材與原廠料件費用另依實際情況報價。
           </p>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section style={{ background: "var(--panel)", borderTop: "1px solid var(--line)", padding: "104px 0" }}>
+        <div style={{ maxWidth: 1080, margin: "0 auto", padding: "0 40px" }}>
+          <div style={{ textAlign: "center", marginBottom: 54 }}>
+            <div style={{ ...eyebrow, textAlign: "center" }}>FAQ</div>
+            <h2 style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 32, margin: 0, letterSpacing: "1px" }}>常見問題</h2>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(380px,1fr))", gap: 1, background: "var(--line)", border: "1px solid var(--line)" }}>
+            {FAQ.map((item, i) => (
+              <div key={i} style={{ background: "var(--ink)", padding: "34px 32px" }}>
+                <div style={{ display: "flex", gap: 14, alignItems: "flex-start", marginBottom: 12 }}>
+                  <span style={{ fontFamily: "var(--font-jost)", fontWeight: 400, fontSize: 15, color: "#C2A468", flex: "none", lineHeight: 1.5 }}>Q{i + 1}</span>
+                  <h3 style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 500, fontSize: 17, lineHeight: 1.55, letterSpacing: "0.3px", margin: 0 }}>{item.q}</h3>
+                </div>
+                <p style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 14, lineHeight: 1.95, color: "#AEB6C2", margin: 0, paddingLeft: 28 }}>{item.a}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

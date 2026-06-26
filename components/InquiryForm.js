@@ -78,7 +78,7 @@ export default function InquiryForm({ variant = "contact" }) {
         </>
       )}
 
-      {variant === "contact" ? <input name="Email" type="email" placeholder="Email" style={fieldStyle(border)} /> : null}
+      {variant === "contact" ? <input name="email" type="email" placeholder="Email" style={fieldStyle(border)} /> : null}
 
       <input
         name="諮詢項目"

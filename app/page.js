@@ -8,7 +8,7 @@ import InquiryForm from "@/components/InquiryForm";
 import { Icon } from "@/components/Icons";
 import { getPublishedProducts } from "@/lib/products";
 import { resolveMarketingImage } from "@/lib/marketingImages";
-import { BRAND_TIERS, SERVICE_EDGE, SERVICES, TRUST, STORE } from "@/lib/seedData";
+import { BRAND_TIERS, SERVICE_EDGE, SERVICES, TRUST, STORE, HOME_HIGHLIGHTS, VERIFY_LINKS } from "@/lib/seedData";
 
 export default async function HomePage() {
   const products = await getPublishedProducts();
@@ -96,6 +96,27 @@ export default async function HomePage() {
               </Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* highlights — three cards under the hero */}
+      <section style={{ background: "#070d16", borderBottom: "1px solid var(--line)", padding: "80px 0" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))", gap: 1, background: "var(--line)", border: "1px solid var(--line)" }}>
+          {HOME_HIGHLIGHTS.map((h) => (
+            <div key={h.n} style={{ background: "#0A0F18", padding: "44px 38px", display: "flex", flexDirection: "column", gap: 16 }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <div style={{ color: "var(--gold)" }}>
+                  <Icon name={h.icon} size={36} />
+                </div>
+                <span style={{ fontFamily: "var(--font-jost)", fontWeight: 300, fontSize: 38, color: "rgba(194,164,104,0.24)", lineHeight: 1 }}>{h.n}</span>
+              </div>
+              <div>
+                <div style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 500, fontSize: 20, letterSpacing: "0.5px", marginBottom: 5 }}>{h.zh}</div>
+                <div style={{ fontFamily: "var(--font-jost)", fontSize: 11, letterSpacing: 2, color: "var(--muted)", textTransform: "uppercase" }}>{h.en}</div>
+              </div>
+              <p style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 14, lineHeight: 1.95, color: "var(--silver)", margin: 0 }}>{h.desc}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -294,6 +315,41 @@ export default async function HomePage() {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* official & public listings — verification / trust */}
+      <section style={{ background: "#070d16", borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)", padding: "100px 0" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px" }}>
+          <div style={{ textAlign: "center", marginBottom: 18 }}>
+            <div style={{ ...eyebrow, textAlign: "center" }}>Verified · Official Listings</div>
+            <h2 style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 32, margin: "0 0 16px", letterSpacing: "1px" }}>官方與公開資訊查詢</h2>
+            <p style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 15, lineHeight: 1.95, color: "var(--silver)", maxWidth: 620, margin: "0 auto" }}>
+              FORMOSA31（寶島鐘錶 明誠店）可於品牌官方與公開通路資料中查證。購買前歡迎確認門市的真實性與授權狀態。
+            </p>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(252px,1fr))", gap: 18, marginTop: 48 }}>
+            {VERIFY_LINKS.map((v) => (
+              <div key={v.name} style={{ border: "1px solid var(--line)", background: "#0A0F18", padding: "32px 28px", display: "flex", flexDirection: "column", gap: 14 }}>
+                <div style={{ color: "var(--gold)" }}>
+                  <Icon name={v.icon} size={30} />
+                </div>
+                <div>
+                  <div style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 500, fontSize: 18, letterSpacing: "0.5px" }}>{v.name}</div>
+                  <div style={{ fontFamily: "var(--font-jost)", fontSize: 11, letterSpacing: 2, color: "var(--muted)", textTransform: "uppercase", marginTop: 5 }}>{v.cat}</div>
+                </div>
+                <p style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 13.5, lineHeight: 1.9, color: "var(--silver)", margin: 0 }}>{v.desc}</p>
+                <a
+                  href={v.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ marginTop: "auto", alignSelf: "flex-start", fontFamily: "var(--font-jost)", fontSize: 11, letterSpacing: 2, color: "var(--gold)", border: "1px solid rgba(194,164,104,0.5)", padding: "11px 20px", textDecoration: "none", textTransform: "uppercase" }}
+                >
+                  查看資訊 →
+                </a>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
