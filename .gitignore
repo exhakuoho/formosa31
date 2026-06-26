@@ -46,3 +46,7 @@ next-env.d.ts
 
 # Claude Code local settings
 /.claude/
+
+# Local personal notes / discussion records (not part of the site)
+/FORMOSA31-討論紀錄-QA.txt
+/*-討論紀錄-*.txt
