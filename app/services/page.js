@@ -95,38 +95,42 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* repair flow */}
+      {/* repair flow — horizontal numbered step-flow (0627 redesign) */}
       <section style={{ maxWidth: 1280, margin: "0 auto", padding: "104px 40px" }}>
-        <div style={{ textAlign: "center", marginBottom: 54 }}>
+        <div style={{ textAlign: "center", marginBottom: 50 }}>
           <div style={{ ...eyebrow, textAlign: "center" }}>Repair Process</div>
-          <h2 style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 32, margin: "0 0 12px", letterSpacing: "1px" }}>清楚流程，安心送修</h2>
-          <p style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 15, color: "#AEB6C2", margin: 0 }}>檢測 → 報價 → 訂購零件 → 維修更換 → 組裝檢測 → 完成交件</p>
+          <h2 style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 32, margin: "0 0 14px", letterSpacing: "1px" }}>清楚流程，安心送修</h2>
+          <div style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 14, letterSpacing: "1px", color: "#AEB6C2" }}>
+            檢測 → 報價 → 訂購零件 → 維修更換 → 組裝檢測 → 完成交件
+          </div>
         </div>
-        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: 10 }}>
-          {REPAIR_FLOW.map((f, i) => (
-            <div key={f.n} style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <div style={{ width: 158, minHeight: 168, border: "1px solid var(--line)", background: "var(--ink)", padding: "26px 18px", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
-                <span style={{ width: 46, height: 46, borderRadius: "50%", border: "1px solid rgba(194,164,104,0.55)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-jost)", fontWeight: 300, fontSize: 22, color: "#C2A468" }}>{f.n}</span>
-                <div>
-                  <div style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 500, fontSize: 17, letterSpacing: "0.5px" }}>{f.zh}</div>
-                  <div style={{ fontFamily: "var(--font-jost)", fontSize: 10, letterSpacing: 1.5, color: "#828D9C", textTransform: "uppercase", marginTop: 3 }}>{f.en}</div>
+
+        <div style={{ display: "flex", alignItems: "stretch", flexWrap: "wrap", gap: 0 }}>
+          {REPAIR_FLOW.map((f) => (
+            <div key={f.n} style={{ flex: 1, minWidth: 150, display: "flex", alignItems: "center" }}>
+              <div style={{ flex: 1, border: "1px solid var(--line)", padding: "30px 16px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", minHeight: 206 }}>
+                <div style={{ width: 46, height: 46, borderRadius: "50%", border: "1px solid rgba(194,164,104,0.5)", display: "flex", alignItems: "center", justifyContent: "center", color: "#C2A468", fontFamily: "var(--font-jost)", fontWeight: 300, fontSize: 18, marginBottom: 18 }}>
+                  {f.n}
                 </div>
-                <p style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 12.5, lineHeight: 1.7, color: "#AEB6C2", margin: 0 }}>{f.desc}</p>
+                <div style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 500, fontSize: 18, letterSpacing: "0.5px", marginBottom: 4 }}>{f.zh}</div>
+                <div style={{ fontFamily: "var(--font-jost)", fontSize: 10, letterSpacing: 2, color: "#828D9C", textTransform: "uppercase", marginBottom: 14 }}>{f.en}</div>
+                <p style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 13, lineHeight: 1.7, color: "#AEB6C2", margin: 0 }}>{f.desc}</p>
               </div>
-              {i < REPAIR_FLOW.length - 1 ? (
-                <span style={{ color: "rgba(194,164,104,0.6)", fontSize: 20, fontFamily: "var(--font-jost)", flex: "none" }}>→</span>
+              {f.arrow ? (
+                <span style={{ flex: "none", fontFamily: "var(--font-jost)", fontSize: 16, color: "#828D9C", padding: "0 7px" }}>{f.arrow}</span>
               ) : null}
             </div>
           ))}
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: 24, marginTop: 48, alignItems: "start" }}>
-          <p style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 14, lineHeight: 2.05, color: "#AEB6C2", margin: 0 }}>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: 40, alignItems: "start", marginTop: 48 }}>
+          <p style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 14, lineHeight: 2, color: "#AEB6C2", margin: 0 }}>
             FORMOSA31 重視維修流程的透明度，會依照腕錶狀況提供檢測與報價建議。多數案件可於現場提供初步報價，並採維修完成後才收費的方式。實際維修時間會依品牌、零件供應與維修狀況而有所不同。
           </p>
-          <div style={{ border: "1px solid rgba(194,164,104,0.4)", borderLeft: "3px solid #C2A468", background: "rgba(194,164,104,0.05)", padding: "26px 28px" }}>
-            <div style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 500, fontSize: 16, letterSpacing: "0.5px", marginBottom: 4 }}>透明流程</div>
-            <div style={{ fontFamily: "var(--font-jost)", fontSize: 11, letterSpacing: 2, color: "#C2A468", textTransform: "uppercase", marginBottom: 12 }}>Transparent Process</div>
-            <p style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 13.5, lineHeight: 1.95, color: "#AEB6C2", margin: 0 }}>
+          <div style={{ border: "1px solid rgba(194,164,104,0.4)", padding: 30 }}>
+            <div style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 500, fontSize: 17, letterSpacing: "0.5px", marginBottom: 4 }}>透明流程</div>
+            <div style={{ fontFamily: "var(--font-jost)", fontSize: 11, letterSpacing: 2, color: "#828D9C", textTransform: "uppercase", marginBottom: 14 }}>Transparent Process</div>
+            <p style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 14, lineHeight: 1.9, color: "#AEB6C2", margin: 0 }}>
               讓客戶在維修前知道流程、費用與可能等待時間，降低「不知道會不會被亂收費」的不安感。
             </p>
           </div>

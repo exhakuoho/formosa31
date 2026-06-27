@@ -88,7 +88,7 @@ textarea::placeholder {
 }
 
 .f31-brandTile:hover {
-  background: var(--panel) !important;
+  background: var(--panel2) !important;
   border-color: rgba(194, 164, 104, 0.5) !important;
 }
 
@@ -102,4 +102,65 @@ textarea::placeholder {
 
 .f31-channelCard-line:hover {
   border-color: #06C755 !important;
+}
+
+/* ====================================================================== */
+/* 2026 redesign — responsive collapse for the new fixed-grid sections.    */
+/* The bento / trust / logo-wall grids use explicit column tracks for      */
+/* desktop rhythm; below these breakpoints they linearise so nothing       */
+/* overflows or squashes. Children keep their inline grid-column/row on    */
+/* desktop; `!important` here overrides those inline tracks on mobile.      */
+/* ====================================================================== */
+
+/* --- 門市專業服務 Bento --- */
+@media (max-width: 900px) {
+  .f31-bento {
+    grid-template-columns: repeat(2, 1fr) !important;
+    grid-auto-rows: 168px !important;
+  }
+  /* let the spanned cells keep 2-wide; reset the 2x2 main to 2x2 still ok */
+  .f31-bento > a {
+    grid-column: auto / span 2 !important;
+    grid-row: auto !important;
+    min-height: 168px;
+  }
+}
+@media (max-width: 560px) {
+  .f31-bento {
+    grid-template-columns: 1fr !important;
+    grid-auto-rows: minmax(150px, auto) !important;
+  }
+  .f31-bento > a {
+    grid-column: 1 / -1 !important;
+  }
+}
+
+/* --- 值得信賴的理由 big card + tiles --- */
+@media (max-width: 860px) {
+  .f31-trust {
+    grid-template-columns: 1fr !important;
+  }
+  .f31-trust > div:last-child {
+    grid-template-rows: none !important;
+  }
+}
+
+/* --- 官方資訊查詢 Logo wall --- */
+@media (max-width: 900px) {
+  .f31-logowall {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+@media (max-width: 520px) {
+  .f31-logowall {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Respect reduced-motion: HomeFX already skips entrance/hover transforms,
+   but make sure nothing animates via CSS either. */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+  }
 }
