@@ -11,9 +11,23 @@ export const metadata = {
   description: "FORMOSA31 唯誠鐘錶品牌故事：中高階腕錶銷售、專業維修技術與長期售後服務的高雄在地鐘錶門市。",
 };
 
+// In-store brand counter photos: drop "counter-<brand>.jpg" into
+// public/images/ and the matching tile appears; missing files are skipped.
+const COUNTER_PHOTOS = [
+  { id: "counter-longines", zh: "Longines 浪琴", en: "Longines" },
+  { id: "counter-rado", zh: "Rado 雷達", en: "Rado Switzerland" },
+  { id: "counter-mido", zh: "Mido 美度", en: "Mido" },
+  { id: "counter-oris", zh: "Oris 豪利時", en: "Oris" },
+  { id: "counter-ball", zh: "Ball 波爾", en: "Ball Watch" },
+  { id: "counter-seiko", zh: "Seiko 精工", en: "Seiko" },
+  { id: "counter-rado-2", zh: "Rado 雷達", en: "Display Showcase" },
+  { id: "counter-mido-2", zh: "Mido 美度", en: "Display Showcase" },
+];
+
 export default function BrandPage() {
   const heroImg = resolveMarketingImage("brand-hero");
   const aboutImg = resolveMarketingImage("brand-about");
+  const counters = COUNTER_PHOTOS.map((c) => ({ ...c, src: resolveMarketingImage(c.id) })).filter((c) => c.src);
   return (
     <div style={{ background: "#0A0F18", color: "#F4F2EC", minHeight: "100vh" }}>
       <Header active="brand" />
@@ -91,6 +105,28 @@ export default function BrandPage() {
         </div>
         <PlaceholderImage src={aboutImg} label="拖入門市環境／櫃位照" style={{ width: "100%", height: 500 }} />
       </section>
+
+      {/* brand counters */}
+      {counters.length > 0 ? (
+        <section style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px 110px" }}>
+          <div style={eyebrow}>In-Store Brand Counters</div>
+          <h2 style={h2Serif}>品牌專櫃實景</h2>
+          <p style={{ ...bodyText, maxWidth: 640, marginBottom: 44 }}>
+            門市內設有各品牌原廠專櫃與展示櫃，歡迎親臨賞錶，實際感受每一只腕錶的細節與質感。
+          </p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(250px,1fr))", gap: 18 }}>
+            {counters.map((c) => (
+              <figure key={c.id} style={{ margin: 0 }}>
+                <PlaceholderImage src={c.src} alt={`FORMOSA31 門市內 ${c.zh} 專櫃實景`} sizes="(max-width: 600px) 100vw, 300px" style={{ width: "100%", height: 340 }} />
+                <figcaption style={{ padding: "14px 2px 0" }}>
+                  <div style={{ fontFamily: "var(--font-noto-sans-tc)", fontSize: 14, letterSpacing: "0.5px", color: "#F4F2EC" }}>{c.zh}</div>
+                  <div style={{ fontFamily: "var(--font-jost)", fontSize: 11, letterSpacing: 2, color: "#828D9C", textTransform: "uppercase", marginTop: 3 }}>{c.en}</div>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       {/* core values */}
       <section style={{ background: "var(--panel)", borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)", padding: "100px 0" }}>

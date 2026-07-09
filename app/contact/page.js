@@ -69,7 +69,7 @@ export default function ContactPage() {
       <section style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px 50px" }}>
         <PlaceholderImage
           src={storeImg}
-          alt="FORMOSA31 唯誠鐘錶門市實景 — RADO 品牌專櫃"
+          alt="FORMOSA31 唯誠鐘錶門市外觀 — 高雄市左營區明誠二路505-3號"
           label="拖入門市實景照"
           sizes="(max-width: 1280px) 100vw, 1200px"
           style={{ width: "100%", height: 460 }}
