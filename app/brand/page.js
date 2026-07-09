@@ -20,6 +20,9 @@ const COUNTER_PHOTOS = [
   { id: "counter-oris", zh: "Oris 豪利時", en: "Oris" },
   { id: "counter-ball", zh: "Ball 波爾", en: "Ball Watch" },
   { id: "counter-seiko", zh: "Seiko 精工", en: "Seiko" },
+  { id: "counter-citizen", zh: "Citizen 星辰", en: "Citizen" },
+  { id: "counter-casio", zh: "Casio 卡西歐", en: "Casio" },
+  { id: "counter-gshock", zh: "G-Shock", en: "Casio G-Shock" },
   { id: "counter-rado-2", zh: "Rado 雷達", en: "Display Showcase" },
   { id: "counter-mido-2", zh: "Mido 美度", en: "Display Showcase" },
 ];
