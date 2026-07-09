@@ -2,8 +2,10 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StoreMap from "@/components/StoreMap";
 import InquiryForm from "@/components/InquiryForm";
+import PlaceholderImage from "@/components/PlaceholderImage";
 import { Icon } from "@/components/Icons";
 import { STORE } from "@/lib/seedData";
+import { resolveMarketingImage } from "@/lib/marketingImages";
 
 export const metadata = {
   title: "聯絡門市",
@@ -11,6 +13,7 @@ export const metadata = {
 };
 
 export default function ContactPage() {
+  const storeImg = resolveMarketingImage("contact-store");
   return (
     <div style={{ background: "#0A0F18", color: "#F4F2EC", minHeight: "100vh" }}>
       <Header active="contact" />
@@ -60,6 +63,17 @@ export default function ContactPage() {
             11:00 – 21:00
           </div>
         </div>
+      </section>
+
+      {/* store photo */}
+      <section style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px 50px" }}>
+        <PlaceholderImage
+          src={storeImg}
+          alt="FORMOSA31 唯誠鐘錶門市實景 — RADO 品牌專櫃"
+          label="拖入門市實景照"
+          sizes="(max-width: 1280px) 100vw, 1200px"
+          style={{ width: "100%", height: 460 }}
+        />
       </section>
 
       {/* map + form */}
