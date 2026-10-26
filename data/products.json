@@ -11,7 +11,14 @@
     "strap": "鱷魚皮錶帶 Alligator",
     "water": "30 米 / 3 ATM",
     "price": "NT$ 92,000",
-    "kw": ["商務", "正裝", "月相", "機械", "送禮", "收藏"],
+    "kw": [
+      "商務",
+      "正裝",
+      "月相",
+      "機械",
+      "送禮",
+      "收藏"
+    ],
     "tag": "經典",
     "stock": 3,
     "status": "published",
@@ -28,7 +35,12 @@
     "material": "不鏽鋼 · 鑽石時標",
     "strap": "不鏽鋼鍊帶 Steel",
     "price": "NT$ 86,000",
-    "kw": ["正裝", "女錶", "送禮", "石英"],
+    "kw": [
+      "正裝",
+      "女錶",
+      "送禮",
+      "石英"
+    ],
     "tag": "女錶",
     "stock": 2,
     "status": "published",
@@ -46,7 +58,13 @@
     "strap": "陶瓷鍊帶 Ceramic",
     "water": "300 米 / 30 ATM",
     "price": "NT$ 109,000",
-    "kw": ["潛水", "運動", "機械", "男錶", "收藏"],
+    "kw": [
+      "潛水",
+      "運動",
+      "機械",
+      "男錶",
+      "收藏"
+    ],
     "tag": "熱門",
     "stock": 2,
     "status": "published",
@@ -63,7 +81,11 @@
     "material": "高科技陶瓷 Ceramic",
     "strap": "陶瓷錶帶 Ceramic",
     "price": "歡迎詢價",
-    "kw": ["正裝", "商務", "機械"],
+    "kw": [
+      "正裝",
+      "商務",
+      "機械"
+    ],
     "tag": "",
     "stock": 1,
     "status": "draft",
@@ -81,7 +103,12 @@
     "strap": "橡膠錶帶 Rubber",
     "water": "600 米 / 60 ATM",
     "price": "NT$ 41,000",
-    "kw": ["潛水", "運動", "機械", "男錶"],
+    "kw": [
+      "潛水",
+      "運動",
+      "機械",
+      "男錶"
+    ],
     "tag": "",
     "stock": 4,
     "status": "published",
@@ -99,7 +126,12 @@
     "strap": "不鏽鋼鍊帶 Steel",
     "water": "300 米 / 30 ATM",
     "price": "NT$ 62,000",
-    "kw": ["潛水", "運動", "機械", "男錶"],
+    "kw": [
+      "潛水",
+      "運動",
+      "機械",
+      "男錶"
+    ],
     "tag": "",
     "stock": 2,
     "status": "published",
@@ -116,7 +148,13 @@
     "material": "不鏽鋼 Steel",
     "strap": "NATO 帆布錶帶",
     "price": "NT$ 26,000",
-    "kw": ["運動", "飛行", "機械", "男錶", "送禮"],
+    "kw": [
+      "運動",
+      "飛行",
+      "機械",
+      "男錶",
+      "送禮"
+    ],
     "tag": "人氣",
     "stock": 5,
     "status": "published",
@@ -133,7 +171,12 @@
     "material": "不鏽鋼 Steel",
     "strap": "皮革錶帶 Leather",
     "price": "NT$ 35,000",
-    "kw": ["商務", "正裝", "機械", "送禮"],
+    "kw": [
+      "商務",
+      "正裝",
+      "機械",
+      "送禮"
+    ],
     "tag": "",
     "stock": 2,
     "status": "published",
@@ -150,7 +193,12 @@
     "material": "不鏽鋼 Steel",
     "strap": "不鏽鋼鍊帶 Steel",
     "price": "NT$ 18,000",
-    "kw": ["商務", "正裝", "機械", "送禮"],
+    "kw": [
+      "商務",
+      "正裝",
+      "機械",
+      "送禮"
+    ],
     "tag": "",
     "stock": 6,
     "status": "published",
@@ -167,7 +215,12 @@
     "material": "不鏽鋼 Steel",
     "strap": "皮革錶帶 Leather",
     "price": "NT$ 12,000",
-    "kw": ["商務", "石英", "男錶", "送禮"],
+    "kw": [
+      "商務",
+      "石英",
+      "男錶",
+      "送禮"
+    ],
     "tag": "",
     "stock": 4,
     "status": "published",
@@ -186,10 +239,47 @@
     "water": "200 米 / 20 ATM",
     "crystal": "礦物玻璃 Mineral",
     "price": "NT$ 3,800",
-    "kw": ["運動", "石英", "男錶"],
+    "kw": [
+      "運動",
+      "石英",
+      "男錶"
+    ],
     "tag": "",
     "stock": 8,
     "status": "draft",
     "images": []
+  },
+  {
+    "id": "TEST-L52554706",
+    "brand": "Longines",
+    "line": "浪琴表多情系列 DolceVita 銀色飾紋 不鏽鋼鍊帶腕錶",
+    "model": "L5.255.4.70.6",
+    "size": "20.80 x 32.00 mm",
+    "movement": "石英（L178.2）",
+    "material": "不鏽鋼",
+    "strap": "不鏽鋼鍊帶",
+    "water": "3 bar",
+    "crystal": "抗磨損合成藍寶石",
+    "warranty": "LONGINES 原廠兩年保固",
+    "condition": "全新公司貨，附原廠保固卡",
+    "price": "NT$ 52,200",
+    "availability": "私訊詢問",
+    "kw": [
+      "多情系列",
+      "DolceVita",
+      "長方形",
+      "石英",
+      "銀色飾紋",
+      "不鏽鋼"
+    ],
+    "status": "published",
+    "images": [
+      "/images/products/TEST-L52554706/01.png",
+      "/images/products/TEST-L52554706/02.png",
+      "/images/products/TEST-L52554706/03.png",
+      "/images/products/TEST-L52554706/04.png",
+      "/images/products/TEST-L52554706/05.png",
+      "/images/products/TEST-L52554706/06.png"
+    ]
   }
 ]
