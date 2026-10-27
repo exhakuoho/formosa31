@@ -1,0 +1,203 @@
+.gallery {
+  width: 100%;
+  max-width: 640px;
+  min-width: 0;
+  margin-inline: auto;
+  color: #f4f2ec;
+}
+
+.canvas {
+  position: relative;
+  width: 100%;
+}
+
+.stage {
+  display: block;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1.08;
+  overflow: hidden;
+  border: 1px solid #c5c0b6;
+  padding: 0;
+  background: linear-gradient(140deg, #f1efe9, #e5e2da);
+  color: #69665e;
+  cursor: zoom-in;
+  touch-action: pan-y pinch-zoom;
+}
+
+.photo,
+.enlargedPhoto {
+  object-fit: contain;
+  object-position: center;
+}
+
+.photo {
+  padding: 36px 30px 50px;
+  pointer-events: none;
+  animation: revealPhoto 220ms ease-out;
+}
+
+.zoomHint {
+  position: absolute;
+  right: 24px;
+  bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  line-height: 16px;
+  pointer-events: none;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.arrowButton,
+.closeButton {
+  display: inline-flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  color: #b6a384;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+
+.progress {
+  flex: 1;
+  min-width: 0;
+}
+
+.caption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  color: #828d9c;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.counter {
+  flex-shrink: 0;
+  color: #d8c28e;
+  font-family: var(--font-jost), sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+.counter > span:last-child { color: #828d9c; font-size: 11px; }
+
+.segments {
+  position: relative;
+  display: flex;
+  gap: 7px;
+  min-width: 0;
+}
+
+.segment {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.segment::before {
+  content: "";
+  position: absolute;
+  height: 1px;
+  top: 50%;
+  left: 0;
+  right: 0;
+  background: #46505d;
+  transition: background 160ms ease;
+}
+
+.segment[aria-pressed="true"]::before { background: #d8c28e; }
+.empty { display: flex; align-items: center; justify-content: center; flex-direction: column; cursor: default; }
+.emptyMark { color: #b5a582; opacity: .55; font-family: var(--font-jost), sans-serif; font-size: 76px; font-weight: 300; }
+.empty p { margin: 14px 0 8px; font-size: 15px; letter-spacing: 2px; }
+.empty > span:last-child { font-size: 11px; }
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 28px;
+  border: 0;
+  color: #f4f2ec;
+  background: rgba(5, 9, 15, .96);
+}
+
+.lightbox::backdrop { background: rgba(5, 9, 15, .85); }
+.lightbox[open] { display: flex; align-items: center; justify-content: center; }
+
+.lightboxContent {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  width: min(1280px, 100%);
+  height: 100%;
+  min-width: 0;
+  gap: 16px;
+}
+
+.lightboxHeading { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.lightboxHeading p { margin: 0; font-size: 14px; font-weight: 400; line-height: 1.6; }
+.lightboxHeading p > span { display: block; margin-top: 3px; color: #aeb6c2; font-size: 11px; }
+.lightboxImage { position: relative; min-height: 0; border: 1px solid #c5c0b6; background: linear-gradient(140deg, #f1efe9, #e5e2da); }
+.enlargedPhoto { padding: 18px; }
+.lightboxControls { display: flex; align-items: center; justify-content: center; gap: 28px; font-family: var(--font-jost), sans-serif; font-size: 12px; letter-spacing: 2px; color: #c2a468; }
+
+.gallery button:focus-visible { outline: 2px solid #e7ce94; outline-offset: 3px; }
+.lightbox button:focus-visible { outline: 2px solid #e7ce94; outline-offset: 3px; }
+
+.srOnly { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+@media (hover: hover) {
+  .arrowButton:hover, .closeButton:hover { color: #f4f2ec; border-color: #8d7955; }
+  .segment:hover::before { background: #e7ce94; }
+}
+
+@media (max-width: 760px) {
+  .photo { padding: 28px 22px 44px; }
+  .zoomHint { right: 20px; bottom: 18px; font-size: 9px; }
+  .controls { gap: 6px; margin-top: 14px; }
+  .caption { gap: 8px; }
+  .instruction { font-size: 9px; letter-spacing: 0; }
+  .counter { font-size: 14px; letter-spacing: 1px; }
+  .counter > span:last-child { font-size: 10px; }
+  .segments { gap: 5px; }
+  .lightbox { padding: 18px 16px; }
+  .lightboxContent { gap: 12px; }
+  .lightboxHeading p { font-size: 12px; }
+  .enlargedPhoto { padding: 10px; }
+}
+
+@keyframes revealPhoto {
+  from { opacity: .45; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery *, .gallery *::before, .gallery *::after { animation: none; transition: none; }
+}

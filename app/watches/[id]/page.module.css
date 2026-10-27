@@ -1,0 +1,18 @@
+.breadcrumb { max-width: 1280px; margin: 0 auto; padding: 40px 40px 0; overflow-wrap: anywhere; }
+.detailLayout { max-width: 1280px; margin: 0 auto; padding: 36px 40px 80px; display: grid; grid-template-columns: minmax(0, 1.06fr) minmax(0, 1fr); gap: 64px; }
+.productInfo { min-width: 0; overflow-wrap: anywhere; }
+.price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 14px; margin: 26px 0; padding: 22px 0; border-top: 1px solid rgba(255,255,255,.1); border-bottom: 1px solid rgba(255,255,255,.1); }
+.guarantees { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 24px; font-family: var(--font-noto-sans-tc); font-size: 12px; color: #828d9c; }
+.specContent { max-width: 920px; margin: 0 auto; padding: 0 40px; }
+.specRow { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 20px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,.08); overflow-wrap: anywhere; }
+
+@media (max-width: 1060px) {
+  .detailLayout { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+}
+
+@media (max-width: 760px) {
+  .breadcrumb { padding-left: 24px; padding-right: 24px; }
+  .detailLayout { padding-left: 24px; padding-right: 24px; gap: 40px; }
+  .specContent { padding: 0 24px; }
+  .specRow { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+}
