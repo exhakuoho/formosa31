@@ -281,5 +281,236 @@
       "/images/products/TEST-L52554706/05.png",
       "/images/products/TEST-L52554706/06.png"
     ]
+  },
+  {
+    "id": "TEST-L52554716",
+    "brand": "Longines",
+    "line": "浪琴表多情系列 DolceVita 銀色飾紋 不鏽鋼鍊帶腕錶",
+    "model": "L5.255.4.71.6",
+    "size": "20.80 x 32.00 mm",
+    "movement": "石英（L178.2）",
+    "material": "不鏽鋼",
+    "strap": "不鏽鋼鍊帶",
+    "water": "3 bar",
+    "crystal": "抗磨損合成藍寶石",
+    "warranty": "LONGINES 原廠兩年保固",
+    "condition": "全新公司貨，附原廠保固卡",
+    "price": "NT$ 50,000",
+    "availability": "私訊詢問",
+    "kw": [
+      "多情系列",
+      "DolceVita",
+      "長方形",
+      "石英",
+      "銀色飾紋",
+      "不鏽鋼"
+    ],
+    "status": "published",
+    "images": [
+      "/images/products/TEST-L52554716/01.png",
+      "/images/products/TEST-L52554716/02.png",
+      "/images/products/TEST-L52554716/03.png",
+      "/images/products/TEST-L52554716/04.png",
+      "/images/products/TEST-L52554716/05.png",
+      "/images/products/TEST-L52554716/06.png",
+      "/images/products/TEST-L52554716/07.png"
+    ]
+  },
+  {
+    "id": "TEST-L57674719",
+    "brand": "Longines",
+    "line": "浪琴表多情系列 DolceVita 銀色飾紋 藍皮帶自動腕錶",
+    "model": "L5.767.4.71.9",
+    "size": "28.20 x 47.00 mm",
+    "movement": "自動上鏈機械機芯（L592.5）",
+    "material": "不鏽鋼",
+    "strap": "藍鱷魚皮錶帶（內襯幼牛皮）",
+    "water": "3 bar",
+    "crystal": "抗磨損合成藍寶石",
+    "warranty": "LONGINES 原廠五年保固",
+    "condition": "全新公司貨，附原廠保固卡",
+    "price": "NT$ 62,500",
+    "availability": "私訊詢問",
+    "kw": [
+      "多情系列",
+      "DolceVita",
+      "長方形",
+      "自動上鏈機械機芯",
+      "銀色飾紋",
+      "藍"
+    ],
+    "status": "published",
+    "images": [
+      "/images/products/TEST-L57674719/01.png",
+      "/images/products/TEST-L57674719/02.png",
+      "/images/products/TEST-L57674719/03.png",
+      "/images/products/TEST-L57674719/04.png",
+      "/images/products/TEST-L57674719/05.png",
+      "/images/products/TEST-L57674719/06.png"
+    ]
+  },
+  {
+    "id": "TEST-L52555707",
+    "brand": "Longines",
+    "line": "浪琴表多情系列 DolceVita 銀色飾紋 雙色鍊帶腕錶",
+    "model": "L5.255.5.70.7",
+    "size": "20.80 x 32.00 mm",
+    "movement": "石英（L178.2）",
+    "material": "不鏽鋼錶殼搭配18K黃金錶冠",
+    "strap": "不鏽鋼及18K黃金鍊帶",
+    "water": "3 bar",
+    "crystal": "抗磨損合成藍寶石",
+    "warranty": "LONGINES 原廠兩年保固",
+    "condition": "全新公司貨，附原廠保固卡",
+    "price": "NT$ 75,000",
+    "availability": "私訊詢問",
+    "kw": [
+      "多情系列",
+      "DolceVita",
+      "長方形",
+      "石英",
+      "銀色飾紋",
+      "不鏽鋼及18K黃金"
+    ],
+    "status": "published",
+    "images": [
+      "/images/products/TEST-L52555707/01.png",
+      "/images/products/TEST-L52555707/02.png",
+      "/images/products/TEST-L52555707/03.png",
+      "/images/products/TEST-L52555707/04.png",
+      "/images/products/TEST-L52555707/05.png",
+      "/images/products/TEST-L52555707/06.png"
+    ]
+  },
+  {
+    "id": "TEST-L52554282",
+    "brand": "Longines",
+    "line": "浪琴表多情系列 DolceVita 象牙色玫瑰金飾紋 楓葉紅皮帶腕錶",
+    "model": "L5.255.4.28.2",
+    "size": "20.80 x 32.00 mm",
+    "movement": "石英（L178.2）",
+    "material": "不鏽鋼",
+    "strap": "楓葉紅鱷魚皮錶帶（內襯幼牛皮）",
+    "water": "3 bar",
+    "crystal": "抗磨損合成藍寶石",
+    "warranty": "LONGINES 原廠兩年保固",
+    "condition": "全新公司貨，附原廠保固卡",
+    "price": "NT$ 52,200",
+    "availability": "私訊詢問",
+    "kw": [
+      "多情系列",
+      "DolceVita",
+      "長方形",
+      "石英",
+      "象牙色玫瑰金飾紋",
+      "楓葉紅"
+    ],
+    "status": "published",
+    "images": [
+      "/images/products/TEST-L52554282/01.png",
+      "/images/products/TEST-L52554282/02.png",
+      "/images/products/TEST-L52554282/03.png",
+      "/images/products/TEST-L52554282/04.png",
+      "/images/products/TEST-L52554282/05.png",
+      "/images/products/TEST-L52554282/06.png"
+    ]
+  },
+  {
+    "id": "TEST-L52554082",
+    "brand": "Longines",
+    "line": "浪琴表多情系列 DolceVita 象牙色鍍金飾紋 橄欖綠皮帶腕錶",
+    "model": "L5.255.4.08.2",
+    "size": "20.80 x 32.00 mm",
+    "movement": "石英（L178.2）",
+    "material": "不鏽鋼",
+    "strap": "橄欖綠鱷魚皮錶帶（內襯幼牛皮）",
+    "water": "3 bar",
+    "crystal": "抗磨損合成藍寶石",
+    "warranty": "LONGINES 原廠兩年保固",
+    "condition": "全新公司貨，附原廠保固卡",
+    "price": "NT$ 52,200",
+    "availability": "私訊詢問",
+    "kw": [
+      "多情系列",
+      "DolceVita",
+      "長方形",
+      "石英",
+      "象牙色鍍金飾紋",
+      "橄欖綠"
+    ],
+    "status": "published",
+    "images": [
+      "/images/products/TEST-L52554082/01.png",
+      "/images/products/TEST-L52554082/02.png",
+      "/images/products/TEST-L52554082/03.png",
+      "/images/products/TEST-L52554082/04.png",
+      "/images/products/TEST-L52554082/05.png"
+    ]
+  },
+  {
+    "id": "TEST-L52554702",
+    "brand": "Longines",
+    "line": "浪琴表多情系列 DolceVita 銀色飾紋 午夜藍皮帶腕錶",
+    "model": "L5.255.4.70.2",
+    "size": "20.80 x 32.00 mm",
+    "movement": "石英（L178.2）",
+    "material": "不鏽鋼",
+    "strap": "午夜藍鱷魚皮錶帶（內襯幼牛皮）",
+    "water": "3 bar",
+    "crystal": "抗磨損合成藍寶石",
+    "warranty": "LONGINES 原廠兩年保固",
+    "condition": "全新公司貨，附原廠保固卡",
+    "price": "NT$ 52,200",
+    "availability": "私訊詢問",
+    "kw": [
+      "多情系列",
+      "DolceVita",
+      "長方形",
+      "石英",
+      "銀色飾紋",
+      "午夜藍"
+    ],
+    "status": "published",
+    "images": [
+      "/images/products/TEST-L52554702/01.png",
+      "/images/products/TEST-L52554702/02.png",
+      "/images/products/TEST-L52554702/03.png",
+      "/images/products/TEST-L52554702/04.png",
+      "/images/products/TEST-L52554702/05.png"
+    ]
+  },
+  {
+    "id": "TEST-L55124706",
+    "brand": "Longines",
+    "line": "浪琴表多情系列 DolceVita 銀色飾紋 不鏽鋼鍊帶腕錶",
+    "model": "L5.512.4.70.6",
+    "size": "23.30 x 37.00 mm",
+    "movement": "石英（L176.2）",
+    "material": "不鏽鋼",
+    "strap": "不鏽鋼鍊帶",
+    "water": "3 bar",
+    "crystal": "抗磨損合成藍寶石",
+    "warranty": "LONGINES 原廠兩年保固",
+    "condition": "全新公司貨，附原廠保固卡",
+    "price": "NT$ 52,200",
+    "availability": "私訊詢問",
+    "kw": [
+      "多情系列",
+      "DolceVita",
+      "長方形",
+      "石英",
+      "銀色飾紋",
+      "不鏽鋼"
+    ],
+    "status": "published",
+    "images": [
+      "/images/products/TEST-L55124706/01.png",
+      "/images/products/TEST-L55124706/02.png",
+      "/images/products/TEST-L55124706/03.png",
+      "/images/products/TEST-L55124706/04.png",
+      "/images/products/TEST-L55124706/05.png",
+      "/images/products/TEST-L55124706/06.png",
+      "/images/products/TEST-L55124706/07.png"
+    ]
   }
 ]
