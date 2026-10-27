@@ -83,6 +83,12 @@ export default async function WatchDetailPage({ params }) {
             <span style={{ fontFamily: "var(--font-noto-sans-tc)", fontSize: 13, color: "#828D9C" }}>含稅 · 原廠正品 · 歡迎來電議價</span>
           </div>
 
+          {p.availability ? (
+            <p style={{ fontFamily: "var(--font-noto-sans-tc)", fontSize: 14, color: "#C2A468", margin: "-8px 0 22px" }}>
+              供貨狀態：{p.availability}
+            </p>
+          ) : null}
+
           <p style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 15, lineHeight: 2.05, color: "#AEB6C2", margin: "0 0 22px" }}>{description}</p>
 
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 26 }}>
