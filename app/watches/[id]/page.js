@@ -2,9 +2,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import PlaceholderImage from "@/components/PlaceholderImage";
+import ProductGallery from "@/components/ProductGallery";
 import { getProductById, getAllProductIds } from "@/lib/products";
 import { productSpecRows, productDescription } from "@/lib/seedData";
+import styles from "./page.module.css";
 
 // Pre-render one static page per published watch at build time.
 export function generateStaticParams() {
@@ -35,7 +36,7 @@ export default async function WatchDetailPage({ params }) {
       <Header active="detail" />
 
       {/* breadcrumb */}
-      <section style={{ maxWidth: 1280, margin: "0 auto", padding: "40px 40px 0" }}>
+      <section className={styles.breadcrumb}>
         <div style={{ fontFamily: "var(--font-jost)", fontSize: 12, letterSpacing: 2, color: "#828D9C" }}>
           <Link href="/" style={{ cursor: "pointer", color: "inherit", textDecoration: "none" }}>
             HOME
@@ -49,36 +50,17 @@ export default async function WatchDetailPage({ params }) {
       </section>
 
       {/* gallery + info */}
-      <section style={{ maxWidth: 1280, margin: "0 auto", padding: "36px 40px 80px", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(340px,1fr))", gap: 64 }}>
-        <div>
-          <PlaceholderImage
-            src={images[0]}
-            alt={`${p.brand} ${p.line}`}
-            label="商品主圖（大）"
-            style={{ width: "100%", height: 520, background: "#0F1826", border: "1px solid rgba(255,255,255,0.10)" }}
-            priority
-          />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(270px,1fr))", gap: 14, marginTop: 14 }}>
-            {[1, 2, 3].map((i) => (
-              <PlaceholderImage
-                key={i}
-                src={images[i]}
-                alt={`${p.brand} ${p.line} 細節圖`}
-                label="細節圖"
-                style={{ width: "100%", height: 140, background: "#0F1826", border: "1px solid rgba(255,255,255,0.10)" }}
-              />
-            ))}
-          </div>
-        </div>
+      <section className={styles.detailLayout}>
+        <ProductGallery key={p.id} images={images} name={`${p.brand} ${p.line}`} />
 
-        <div>
+        <div className={styles.productInfo}>
           <div style={{ fontFamily: "var(--font-jost)", fontSize: 12, letterSpacing: 4, color: "#C2A468", textTransform: "uppercase" }}>
             {p.brand} · {p.brandZh}
           </div>
           <h1 style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 34, margin: "12px 0 6px", letterSpacing: "0.5px" }}>{p.line}</h1>
           <div style={{ fontFamily: "var(--font-jost)", fontSize: 13, letterSpacing: "1px", color: "#828D9C" }}>Ref. {p.model}</div>
 
-          <div style={{ display: "flex", alignItems: "baseline", gap: 14, margin: "26px 0", padding: "22px 0", borderTop: "1px solid rgba(255,255,255,0.10)", borderBottom: "1px solid rgba(255,255,255,0.10)" }}>
+          <div className={styles.price}>
             <span style={{ fontFamily: "var(--font-jost)", fontWeight: 400, fontSize: 32, color: "#F4F2EC" }}>{p.price}</span>
             <span style={{ fontFamily: "var(--font-noto-sans-tc)", fontSize: 13, color: "#828D9C" }}>含稅 · 原廠正品 · 歡迎來電議價</span>
           </div>
@@ -129,7 +111,7 @@ export default async function WatchDetailPage({ params }) {
             </div>
           </div>
 
-          <div style={{ display: "flex", gap: 24, marginTop: 24, fontFamily: "var(--font-noto-sans-tc)", fontSize: 12, color: "#828D9C" }}>
+          <div className={styles.guarantees}>
             <span>✓ 原廠正品保證</span>
             <span>✓ 門市售後服務</span>
             <span>✓ 專業維修保養</span>
@@ -139,13 +121,13 @@ export default async function WatchDetailPage({ params }) {
 
       {/* spec table */}
       <section style={{ background: "#0F1826", borderTop: "1px solid rgba(255,255,255,0.10)", padding: "80px 0" }}>
-        <div style={{ maxWidth: 920, margin: "0 auto", padding: "0 40px" }}>
+        <div className={styles.specContent}>
           <h2 style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 26, margin: "0 0 32px", letterSpacing: "1px" }}>
             商品規格 <span style={{ fontFamily: "var(--font-jost)", color: "#828D9C", fontSize: 18 }}>Specifications</span>
           </h2>
           <div style={{ borderTop: "1px solid rgba(255,255,255,0.12)" }}>
             {spec.map((row) => (
-              <div key={row.label} style={{ display: "grid", gridTemplateColumns: "240px 1fr", gap: 20, padding: "16px 0", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+              <div key={row.label} className={styles.specRow}>
                 <div style={{ fontFamily: "var(--font-noto-sans-tc)", fontSize: 13, color: "#828D9C", letterSpacing: "1px" }}>{row.label}</div>
                 <div style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 400, fontSize: 14, color: "#F4F2EC" }}>{row.value}</div>
               </div>
