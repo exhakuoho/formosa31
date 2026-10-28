@@ -1,6 +1,6 @@
 import { Jost, Noto_Sans_TC } from "next/font/google";
 import "./globals.css";
-import { STORE } from "@/lib/seedData";
+import { DEFAULT_BRAND_OPTIONS, STORE } from "@/lib/seedData";
 
 const jost = Jost({
   variable: "--font-jost",
@@ -23,7 +23,7 @@ export const metadata = {
     template: "%s | FORMOSA31 唯誠鐘錶",
   },
   description:
-    "FORMOSA31 唯誠鐘錶座落於高雄左營，專營 Longines、Rado、Mido、Oris、Hamilton、Seiko、Citizen、Casio 等中高階腕錶之銷售、維修與保養，正品保證，專人服務。",
+    "FORMOSA31 唯誠鐘錶座落於高雄左營，專營 Longines、Rado、Mido、Oris、Hamilton、BALL 波爾、Seiko、Citizen、Casio 等中高階腕錶之銷售、維修與保養，正品保證，專人服務。",
 };
 
 export default function RootLayout({ children }) {
@@ -53,7 +53,7 @@ export default function RootLayout({ children }) {
       },
     ],
     priceRange: "NT$10,000–NT$150,000",
-    brand: ["Longines", "Rado", "Mido", "Oris", "Hamilton", "Seiko", "Citizen", "Casio"],
+    brand: DEFAULT_BRAND_OPTIONS,
   };
   return (
     <html lang="zh-Hant" className={`${jost.variable} ${notoSansTC.variable}`}>

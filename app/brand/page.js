@@ -18,7 +18,7 @@ const COUNTER_PHOTOS = [
   { id: "counter-rado", zh: "Rado 雷達", en: "Rado Switzerland" },
   { id: "counter-mido", zh: "Mido 美度", en: "Mido" },
   { id: "counter-oris", zh: "Oris 豪利時", en: "Oris" },
-  { id: "counter-ball", zh: "Ball 波爾", en: "Ball Watch" },
+  { id: "counter-ball", zh: "BALL 波爾", en: "BALL Watch" },
   { id: "counter-seiko", zh: "Seiko 精工", en: "Seiko" },
   { id: "counter-citizen", zh: "Citizen 星辰", en: "Citizen" },
   { id: "counter-casio", zh: "Casio 卡西歐", en: "Casio" },
@@ -82,7 +82,7 @@ export default function BrandPage() {
           <div style={eyebrow}>Our Story</div>
           <h2 style={{ ...h2Serif, lineHeight: 1.4 }}>關於 FORMOSA31</h2>
           <p style={bodyText}>
-            FORMOSA31 專注於國際知名腕錶品牌銷售與鐘錶維修服務，提供 Longines 浪琴、Rado 雷達、Mido 美度、Oris 豪利時、Hamilton 漢米爾頓、Seiko 精工、Citizen 星辰、Casio 卡西歐等多元品牌選擇。
+            FORMOSA31 專注於國際知名腕錶品牌銷售與鐘錶維修服務，提供 Longines 浪琴、Rado 雷達、Mido 美度、Oris 豪利時、Hamilton 漢米爾頓、BALL 波爾、Seiko 精工、Citizen 星辰、Casio 卡西歐等多元品牌選擇。
           </p>
           <p style={{ ...bodyText, marginBottom: 0 }}>
             我們服務的不是一次性的交易，而是從選錶、購買、調整、檢測到後續維修保養的完整鐘錶服務體驗。對我們而言，一間值得信任的鐘錶店，不只要提供好的腕錶，更要在客人購買後持續提供專業支持。
