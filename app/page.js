@@ -262,7 +262,7 @@ export default async function HomePage() {
                 <div style={{ fontFamily: "var(--font-jost)", fontSize: 11, letterSpacing: 3, color: "var(--muted)", textTransform: "uppercase", marginBottom: 8 }}>Watch Sales · 主力服務</div>
                 <h3 style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 400, fontSize: 30, letterSpacing: "1px", margin: "0 0 14px" }}>腕錶銷售</h3>
                 <p style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 14, lineHeight: 1.95, color: "var(--silver)", maxWidth: 330, margin: "0 0 22px" }}>
-                  Longines、Rado、Mido、Oris、Hamilton、Seiko、Citizen、Casio 等國際品牌，依預算、場合與風格為你精選。
+                  Longines、Rado、Mido、Oris、Hamilton、BALL 波爾、Seiko、Citizen、Casio 等國際品牌，依預算、場合與風格為你精選。
                 </p>
                 <span data-magnetic style={{ display: "inline-block", fontFamily: "var(--font-jost)", fontSize: 11, letterSpacing: 2, color: "var(--ink)", background: "var(--gold)", padding: "13px 24px", textTransform: "uppercase" }}>查看精選錶款 →</span>
               </div>
