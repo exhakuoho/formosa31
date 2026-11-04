@@ -1,18 +1,18 @@
-import { Jost, Noto_Sans_TC } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { DEFAULT_BRAND_OPTIONS, STORE } from "@/lib/seedData";
 
-const jost = Jost({
+const jost = localFont({
+  src: "./fonts/Jost-Variable.woff2",
   variable: "--font-jost",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: "100 900",
   display: "swap",
 });
 
-const notoSansTC = Noto_Sans_TC({
+const notoSansTC = localFont({
+  src: "./fonts/NotoSansTC-Variable.woff2",
   variable: "--font-noto-sans-tc",
-  subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "700"],
+  weight: "100 900",
   display: "swap",
   preload: false,
 });
