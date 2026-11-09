@@ -50,3 +50,7 @@ next-env.d.ts
 # Local personal notes / discussion records (not part of the site)
 /FORMOSA31-討論紀錄-QA.txt
 /*-討論紀錄-*.txt
+
+# Generated at build time by `npm run optimize` (scripts/)
+/public/images/_opt/
+/app/fonts/NotoSansTC-Subset.woff2

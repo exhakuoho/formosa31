@@ -147,7 +147,7 @@ export default async function HomePage() {
             <Stat value="1" suffix="on1" label="專人服務" />
           </div>
         </div>
-        <PlaceholderImage src={aboutImg} label="拖入門市環境照" style={{ width: "100%", height: 480 }} />
+        <PlaceholderImage src={aboutImg} label="拖入門市環境照" sizes="(max-width: 700px) 100vw, 600px" style={{ width: "100%", height: 480 }} />
       </section>
 
       {/* brand tiers · color-zoned block */}

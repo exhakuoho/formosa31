@@ -22,6 +22,7 @@ export default function WatchCard({ product, showKeywords = false }) {
           src={p.images && p.images[0]}
           alt={`${p.brand} ${p.line}`}
           label="腕錶去背圖"
+          sizes="(max-width: 640px) 100vw, 320px"
           style={{ width: "100%", height: 320, background: "#0b1018" }}
         />
         {p.tag ? (

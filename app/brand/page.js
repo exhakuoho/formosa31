@@ -37,7 +37,7 @@ export default function BrandPage() {
 
       {/* hero */}
       <section style={{ position: "relative", overflow: "hidden", borderBottom: "1px solid var(--line)" }}>
-        <PlaceholderImage src={heroImg} label="拖入門市／品牌情境大圖" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 0 }} />
+        <PlaceholderImage src={heroImg} label="拖入門市／品牌情境大圖" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 0 }} priority />
         <div
           style={{
             position: "absolute",

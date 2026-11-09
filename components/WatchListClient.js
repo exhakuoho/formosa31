@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import WatchCard from "./WatchCard";
 import { KEYWORD_LIST } from "@/lib/seedData";
 
@@ -14,6 +14,10 @@ const chipBase = {
   border: "none",
   background: "transparent",
 };
+
+// Render the grid in pages instead of all 600+ cards at once; more load
+// automatically as the visitor scrolls near the bottom.
+const PAGE_SIZE = 24;
 
 const kwChipBase = {
   fontFamily: "var(--font-noto-sans-tc)",
@@ -41,6 +45,30 @@ export default function WatchListClient({ products, brandOptions }) {
       return matchQ && matchB && matchK;
     });
   }, [products, searchText, activeBrand, activeKw]);
+
+  // How many cards are rendered; tied to the current filters so any filter
+  // change starts again from the first page.
+  const filterKey = `${searchText}|${activeBrand}|${activeKw.join(",")}`;
+  const [paging, setPaging] = useState({ key: filterKey, n: PAGE_SIZE });
+  const shown = paging.key === filterKey ? paging.n : PAGE_SIZE;
+  const setShown = useCallback(
+    (fn) => setPaging((cur) => ({ key: filterKey, n: fn(cur.key === filterKey ? cur.n : PAGE_SIZE) })),
+    [filterKey],
+  );
+  const sentinel = useRef(null);
+  const hasMore = shown < listResults.length;
+  useEffect(() => {
+    const el = sentinel.current;
+    if (!el || !hasMore || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) setShown((n) => n + PAGE_SIZE);
+      },
+      { rootMargin: "1200px 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [hasMore, shown, setShown]);
 
   const toggleKw = (k) => {
     setActiveKw((cur) => (cur.includes(k) ? cur.filter((x) => x !== k) : [...cur, k]));
@@ -152,11 +180,23 @@ export default function WatchListClient({ products, brandOptions }) {
       {/* grid */}
       <section style={{ maxWidth: 1280, margin: "0 auto", padding: "24px 40px 100px" }}>
         {listResults.length > 0 ? (
+          <>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(270px,1fr))", gap: 28 }}>
-            {listResults.map((w) => (
+            {listResults.slice(0, shown).map((w) => (
               <WatchCard key={w.id} product={w} showKeywords />
             ))}
           </div>
+          {hasMore ? (
+            <div ref={sentinel} style={{ textAlign: "center", marginTop: 48 }}>
+              <button
+                onClick={() => setShown((n) => n + PAGE_SIZE)}
+                style={{ fontFamily: "var(--font-noto-sans-tc)", fontSize: 13, letterSpacing: "2px", color: "#C2A468", background: "transparent", border: "1px solid rgba(194,164,104,0.5)", padding: "13px 32px", cursor: "pointer" }}
+              >
+                載入更多錶款（{listResults.length - shown}）
+              </button>
+            </div>
+          ) : null}
+          </>
         ) : (
           <div style={{ textAlign: "center", padding: "90px 20px", border: "1px dashed rgba(255,255,255,0.14)" }}>
             <div style={{ fontFamily: "var(--font-noto-sans-tc)", fontSize: 17, color: "#AEB6C2", marginBottom: 10 }}>找不到符合條件的錶款</div>
