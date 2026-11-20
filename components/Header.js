@@ -1,3 +1,4 @@
+import MobileMenu from "./MobileMenu";
 import Image from "next/image";
 import Link from "next/link";
 import { STORE } from "@/lib/seedData";
@@ -71,6 +72,7 @@ export default function Header({ active }) {
             </Link>
           ))}
         </nav>
+        <MobileMenu items={NAV} active={active} />
         {active === "contact" ? (
           <a
             href={STORE.phoneHref}

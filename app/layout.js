@@ -10,7 +10,7 @@ const jost = localFont({
 });
 
 const notoSansTC = localFont({
-  src: "./fonts/NotoSansTC-Variable.woff2",
+  src: "./fonts/NotoSansTC-Subset.woff2",
   variable: "--font-noto-sans-tc",
   weight: "100 900",
   display: "swap",

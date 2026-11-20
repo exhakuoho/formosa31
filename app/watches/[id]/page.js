@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ProductGallery from "@/components/ProductGallery";
 import { getProductById, getAllProductIds } from "@/lib/products";
-import { productSpecRows, productDescription } from "@/lib/seedData";
+import { productSpecRows, productDescription, STORE } from "@/lib/seedData";
 import styles from "./page.module.css";
 
 // Pre-render one static page per published watch at build time.
@@ -27,6 +27,8 @@ export default async function WatchDetailPage({ params }) {
   const p = await getProductById(id);
   if (!p) notFound();
 
+  const query = new URLSearchParams({watch:p.id, ref:p.model, name:p.brand+" "+p.line});
+  const inquiry = "/contact?" + query + "#inquiry";
   const spec = productSpecRows(p);
   const description = productDescription(p);
   const images = p.images || [];
@@ -50,7 +52,7 @@ export default async function WatchDetailPage({ params }) {
       </section>
 
       {/* gallery + info */}
-      <section className={styles.detailLayout}>
+      <section className={styles.detailLayout} data-watch-id={p.id} data-watch-model={p.model}>
         <ProductGallery key={p.id} images={images} name={`${p.brand} ${p.line}`} />
 
         <div className={styles.productInfo}>
@@ -90,24 +92,24 @@ export default async function WatchDetailPage({ params }) {
 
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             <Link
-              href="/contact"
+              href={inquiry}
               style={{ fontFamily: "var(--font-jost)", fontSize: 13, letterSpacing: 2, color: "#0A0F18", background: "#C2A468", border: "none", padding: 17, cursor: "pointer", textTransform: "uppercase", textAlign: "center", textDecoration: "none" }}
             >
               聯絡詢價 · Enquire
             </Link>
             <div style={{ display: "flex", gap: 12 }}>
               <Link
-                href="/contact"
+                href={inquiry}
                 style={{ flex: 1, fontFamily: "var(--font-jost)", fontSize: 13, letterSpacing: 2, color: "#F4F2EC", background: "transparent", border: "1px solid rgba(255,255,255,0.32)", padding: 16, cursor: "pointer", textTransform: "uppercase", textAlign: "center", textDecoration: "none" }}
               >
                 預約門市賞錶
               </Link>
-              <a
-                href="#"
+              {STORE.lineUrl && <a
+                href={STORE.lineUrl}
                 style={{ flex: "none", fontFamily: "var(--font-jost)", fontSize: 13, letterSpacing: 2, color: "#06C755", border: "1px solid #06C755", padding: "16px 22px", textDecoration: "none", display: "flex", alignItems: "center", textTransform: "uppercase" }}
               >
                 LINE
-              </a>
+              </a>}
             </div>
           </div>
 
@@ -134,7 +136,7 @@ export default async function WatchDetailPage({ params }) {
             ))}
           </div>
           <div style={{ marginTop: 40, display: "flex", gap: 14, flexWrap: "wrap" }}>
-            <Link href="/contact" style={{ fontFamily: "var(--font-jost)", fontSize: 12, letterSpacing: 2, color: "#0A0F18", background: "#C2A468", border: "none", padding: "15px 30px", cursor: "pointer", textTransform: "uppercase", textDecoration: "none" }}>
+            <Link href={inquiry} style={{ fontFamily: "var(--font-jost)", fontSize: 12, letterSpacing: 2, color: "#0A0F18", background: "#C2A468", border: "none", padding: "15px 30px", cursor: "pointer", textTransform: "uppercase", textDecoration: "none" }}>
               聯絡詢價
             </Link>
             <Link href="/watches" style={{ fontFamily: "var(--font-jost)", fontSize: 12, letterSpacing: 2, color: "#AEB6C2", background: "transparent", border: "1px solid rgba(255,255,255,0.2)", padding: "15px 30px", cursor: "pointer", textTransform: "uppercase", textDecoration: "none" }}>
