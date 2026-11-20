@@ -2,12 +2,9 @@
 
 這是用 Next.js 做的 FORMOSA31（唯誠鐘錶）官方網站，包含：首頁、品牌、服務、精選錶款（可搜尋／篩選）、商品詳情、聯絡門市。
 
-**架構刻意設計成「最低維護」：**
+公開官網是 Next.js 靜態網站。Cloudflare Pages 部署網頁，已遷移的商品圖由公開 R2 提供。員工與 AI 從正式工作台建立商品資料，D1 保存草稿、版本和審核紀錄，私人 R2 保存原圖。
 
-- **沒有資料庫**，不會像一般免費後台那樣閒置就「睡著」。
-- 商品資料是專案裡的一個檔案（`data/products.json`），網站每次部署時把它變成純靜態網頁，掛在 CDN 上，又快又穩。
-- 聯絡表單直接**寄 email 到你的 Gmail**，你收信就好，不用登入任何後台。
-- 日常維護（上架／改價／換照片）**直接跟 Claude 說就好**，它幫你改檔案、推上 GitHub、自動更新網站。
+商品維護依第 2 節操作。網站程式、品牌圖及部署設定依第 3 至 5 節維護。
 
 ---
 
@@ -22,91 +19,52 @@ npm run dev
 
 ---
 
-## 2. 日常維護：商品上架／改價／下架（最常用）
+## 2. 商品上架與維護
 
-**最簡單的方式：直接跟 Claude 說。** 例如：
+入口為 [正式工作台](https://formosa31-staff-workbench.randdlaboratary.workers.dev/)。員工可直接建草稿或下載 Excel／CSV 範本，批量先預覽。AI 可用已授權的批次 API，每批最多 30 款。
 
-- 「幫我把這支浪琴上架，型號 X、價格 Y、規格…」
-- 「這次要上 20 支錶」＋ 一份清單（Excel／Google 試算表／LINE 訊息／拍照都行）＋ 照片 → Claude 一次幫你全部建好、推上線。
-- 「P003 改成下架」「Rolex 那支價格改成 NT$ XXX」
+1. 核對 SKU、完整型號、官方來源、售價、供貨、照片排序及使用權。完全相同的商品沿用既有紀錄，內容不同的同型號交門市核對。
+2. 完成草稿和三項核對後送審。店長在「送審與覆核」使用「核准所選商品」，查看逐筆結果。
+3. 技術負責人核對款數和版本，再發布已核准商品。發布中斷時，查原發布 ID 並接續。
+4. 看到「已推送」後，查 Pages 正式部署及 [官網商品頁](https://formosa31.com/watches)。逐款核對型號、售價、供貨、主圖及照片，記錄完成款數和例外。
 
-Claude 會去改 `data/products.json`、放好照片、推上 GitHub，約 1 分鐘後網站自動更新。
-
-**想自己改也可以**（進階，非必要）：`data/products.json` 是一個商品清單檔，每支錶一個區塊，欄位意思如下：
-
-| 欄位 | 意思 | 範例 |
-|---|---|---|
-| `id` | 商品編號（每支不可重複） | `"P012"` |
-| `brand` | 品牌（英文） | `"Longines"` |
-| `line` | 商品名稱 | `"Master Collection 月相"` |
-| `model` | 型號 | `"L2.909.4.78.3"` |
-| `size` | 錶徑 | `"40 mm"` |
-| `movement` | 機芯 | `"自動機械"` |
-| `material` | 材質 | `"不鏽鋼 Steel"` |
-| `price` | 價格（純文字，可寫「歡迎詢價」） | `"NT$ 92,000"` |
-| `kw` | 關鍵字（用於篩選） | `["商務","正裝","送禮"]` |
-| `tag` | 角標（可留空） | `"經典"` |
-| `stock` | 庫存數量 | `3` |
-| `status` | `"published"` 上架／`"draft"` 不顯示 | `"published"` |
-| `images` | 商品照片路徑（見下一節） | `["/images/products/p012-1.jpg"]` |
-
-其餘欄位（防水、鏡面、保固、品牌中文…）會自動帶入合理預設值，不寫也沒關係。
+現行工作台自動發布以新增商品為主。既有商品的改價、換圖與下架交技術負責人處理，並核對工作台與官網。日常建檔由工作台開始，發布程式負責生成官網所用的商品清單。
 
 ---
 
 ## 3. 商品照片與門市情境照
 
-- **商品照片**：放進 `public/images/products/`，然後在該商品的 `images` 欄位填路徑（例如 `"/images/products/p012-1.jpg"`）。沒有照片時，網站會顯示「腕錶去背圖」的灰色佔位框，不會壞。
-- **首頁／品牌頁／服務頁的大圖**：依固定檔名放進 `public/images/` 就會自動顯示，不用改程式：
-  - `home-hero`、`home-about`
-  - `brand-hero`、`brand-about`
-  - `services-hero`、`services-repair`、`services-open`
-  - 副檔名可用 `.jpg` / `.jpeg` / `.png` / `.webp`
-- 不熟悉怎麼上傳檔案沒關係——把照片給 Claude，它幫你放到正確位置並命名。
+- 工作台原圖存於私人 R2。官網詳情頁沿用公開原圖，部分由公開 R2 提供，其餘由 Pages 提供。
+- 列表每頁 24 款。封面先核對 Git 原圖版本，再讀公開 R2 的 WebP 縮圖。新款或已換圖的款式會先使用原圖。
+- 在最新官網版本執行 `node scripts/publish-card-thumbnails.mjs` 可補上新縮圖。執行環境提供 `CLOUDFLARE_ACCOUNT_ID` 與可寫入公開圖片桶的 `CLOUDFLARE_API_TOKEN`。程式逐張比對原圖與 Git、讀回公開縮圖驗證雜湊，再產出 `data/card-thumbnails.json`。確認完成數後將清單透過 PR 部署。
+- **首頁、品牌頁及服務頁情境圖**由網站維護人員放在 `public/images/`。檔名為 `home-hero`、`home-about`、`brand-hero`、`brand-about`、`services-hero`、`services-repair`、`services-open`，副檔名可用 JPG、JPEG、PNG 或 WebP。
 
 ---
 
-## 4. 聯絡表單寄信設定（一次性，約 2 分鐘）
+## 4. 門市詢價
 
-聯絡表單用免費服務 **Web3Forms** 把客人的詢價直接寄到你信箱。在設定金鑰前，表單會顯示「請直接來電／Email」的提示，網站照常運作。
+商品頁會將名稱、完整型號與網址帶到詢價頁。有表單金鑰時可送出表單，未設定時提供電話與預填電子郵件。
 
-1. 前往 https://web3forms.com ，在首頁輸入你的收件信箱（`0805wilson@gmail.com`），它會寄一封信給你，點信裡的連結確認，就會得到一組 **Access Key**（一串英數字）。**不需要註冊帳號、不需要密碼。**
-2. 把這組 Access Key 給 Claude，或自己在專案根目錄的 `.env.local` 檔案加一行：
-
-   ```
-   NEXT_PUBLIC_WEB3FORMS_KEY=你的_access_key
-   ```
-
-3. 之後客人在網站填表單送出，你的 Gmail 就會收到一封詢價通知。
+1. 請門市確認正式收件信箱，依 Web3Forms 的信箱驗證流程取得金鑰。
+2. 在 Cloudflare Pages 正式建置環境設定 `NEXT_PUBLIC_WEB3FORMS_KEY`。本機測試可使用未納入 Git 的 `.env.local`。
+3. 在相同環境設定 `NEXT_PUBLIC_STORE_LINE_URL`，值為門市確認的 LINE 官方帳號網址。空值會隱藏 LINE 入口。
+4. 重新建置，在商品頁點「聯絡詢價」，確認型號和網址。啟用表單後，用測試件確認門市實際收到內容。
 
 ---
 
-## 5. 部署上線（GitHub → Cloudflare Pages 自動更新）
+## 5. 正式部署與驗收
 
-網站是純靜態輸出，部署很單純：
+正式官網 `formosa31.com` 已接 Cloudflare Pages，從 GitHub 的正式分支建置。網站程式改版先以本機或預覽環境驗收，再依專案發布流程部署。
 
-1. 把專案推上 GitHub（可直接請 Claude 用「推上 GitHub」幫你做）。
-2. 到 Cloudflare 控制台 → **Workers & Pages** → **Create** → **Pages** → **Connect to Git**，選這個 repo。
-3. 建置設定：
-   - **Framework preset**：Next.js（Static HTML Export）／或手動填下面兩項
-   - **Build command**：`npm run build`
-   - **Build output directory**：`out`
-   - **環境變數**：加上 `NEXT_PUBLIC_WEB3FORMS_KEY`（值就是第 4 節拿到的 key）
-4. 按部署。完成後會拿到一個 `xxx.pages.dev` 網址，之後可在 Cloudflare 綁定 `formosa31.com` 自訂網域。
-5. 之後每次把改動推上 GitHub，Cloudflare Pages 會自動重新部署——跟你原本「推上 GitHub 自動更新網站」的習慣完全一樣。
-
-> 也可以部署到 Vercel：選這個 repo，Build command `npm run build`、Output `out`、加上同樣的環境變數即可。
-
----
-
-## 6. 還沒接上的東西
-
-- **LINE 連結**：網站上的「LINE 聯絡／諮詢」按鈕目前是預留位置（連到 `#`），因為還沒有正式的 LINE 官方帳號加入連結。等你有了，告訴 Claude 一次換上即可。
+- 建置指令為 `npm run build`，輸出目錄為 `out`。
+- 聯絡表單使用第 4 節的 `NEXT_PUBLIC_WEB3FORMS_KEY`。
+- 商品發布由工作台觸發。正式 Pages 建置完成後，依該批發布 ID、部署版本及正式商品詳情頁驗收。
+- 需要回退時，由技術負責人確認前一版部署、商品頁及圖片。D1 與私有 R2 另依各自備份處理。
 
 ---
 
 ## 常見問題
 
-- **網站會不會閒置就壞掉／要喚醒？** 不會。沒有資料庫、沒有伺服器，就是一堆靜態檔案放在 CDN 上。
-- **改一支錶要多久才會生效？** 推上 GitHub 後約 1 分鐘，Cloudflare Pages 自動重建完成就更新。
-- **資料會不會不小心刪掉救不回來？** 所有改動都在 GitHub 有版本紀錄，任何一步都能還原。
+- **官網和工作台的資料放在哪裡？** Pages 供應靜態商品頁，已遷移的公開圖由 R2 供應。D1 保存工作台資料，私人 R2 保存草稿原圖與備份。
+- **多久可以看到新商品？** 以 Pages 正式部署完成及逐款回查結果為準。狀態顯示「已推送」時，可接續查部署和正式頁。
+- **工作台目前可放幾款？** 正式上限 2,000 款。送件前先看工作台或 API 預覽回報的可用容量。
