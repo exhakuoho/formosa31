@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import PlaceholderImage from "@/components/PlaceholderImage";
 import StoreMap from "@/components/StoreMap";
 import InquiryForm from "@/components/InquiryForm";
+import { getPublishedProducts } from "@/lib/products";
 import HomeFX from "@/components/HomeFX";
 import { Icon } from "@/components/Icons";
 import { resolveMarketingImage } from "@/lib/marketingImages";
@@ -11,7 +12,8 @@ import { BRAND_TIERS, SERVICE_EDGE, SERVICES, HOME_HIGHLIGHTS, STORE } from "@/l
 
 export default async function HomePage() {
   const heroImg = resolveMarketingImage("home-hero");
-  const aboutImg = resolveMarketingImage("home-about");
+  const aboutImg = resolveMarketingImage("home-about") || resolveMarketingImage("contact-store");
+  const catalogBrands = new Set(getPublishedProducts().map(p=>p.brand));
 
   return (
     <div style={{ background: "#0A0F18" }}>
@@ -147,7 +149,7 @@ export default async function HomePage() {
             <Stat value="1" suffix="on1" label="專人服務" />
           </div>
         </div>
-        <PlaceholderImage src={aboutImg} label="拖入門市環境照" style={{ width: "100%", height: 480 }} />
+        <PlaceholderImage src={aboutImg} alt="唯誠鐘錶高雄左營門市" style={{ width: "100%", height: 480 }} />
       </section>
 
       {/* brand tiers · color-zoned block */}
@@ -176,7 +178,7 @@ export default async function HomePage() {
               {tier.brands.map((b) => (
                 <Link
                   key={b.en}
-                  href="/watches"
+                  href={catalogBrands.has(b.en) ? "/watches?brand="+encodeURIComponent(b.en) : "/contact?brand="+encodeURIComponent(b.en)}
                   className="f31-brandTile"
                   style={{
                     border: "1px solid var(--line)",
@@ -395,8 +397,8 @@ export default async function HomePage() {
               <a href={STORE.phoneHref} style={{ ...btnPrimary, padding: "13px 22px" }}>
                 撥打電話
               </a>
-              <a
-                href="#"
+              {STORE.lineUrl && <a
+                href={STORE.lineUrl}
                 style={{
                   fontFamily: "var(--font-jost)",
                   fontSize: 12,
@@ -409,15 +411,13 @@ export default async function HomePage() {
                 }}
               >
                 LINE 聯絡
-              </a>
+              </a>}
             </div>
             <StoreMap style={{ height: 220, marginTop: 28, border: "1px solid var(--line)" }} />
           </div>
           <div style={{ background: "var(--ink)", border: "1px solid var(--line)", padding: 40 }}>
             <h3 style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 400, fontSize: 20, margin: "0 0 6px", letterSpacing: "1px" }}>預約賞錶 / 詢價</h3>
-            <p style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 13, color: "var(--muted)", margin: "0 0 28px" }}>
-              填寫後門市專人將與您聯繫
-            </p>
+
             <InquiryForm variant="home" />
           </div>
         </div>

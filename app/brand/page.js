@@ -29,7 +29,7 @@ const COUNTER_PHOTOS = [
 
 export default function BrandPage() {
   const heroImg = resolveMarketingImage("brand-hero");
-  const aboutImg = resolveMarketingImage("brand-about");
+  const aboutImg = resolveMarketingImage("brand-about") || resolveMarketingImage("contact-store");
   const counters = COUNTER_PHOTOS.map((c) => ({ ...c, src: resolveMarketingImage(c.id) })).filter((c) => c.src);
   return (
     <div style={{ background: "#0A0F18", color: "#F4F2EC", minHeight: "100vh" }}>
@@ -106,7 +106,7 @@ export default function BrandPage() {
             ))}
           </div>
         </div>
-        <PlaceholderImage src={aboutImg} label="拖入門市環境／櫃位照" style={{ width: "100%", height: 500 }} />
+        <PlaceholderImage src={aboutImg} alt="唯誠鐘錶實體門市" style={{ width: "100%", height: 500 }} />
       </section>
 
       {/* brand counters */}
