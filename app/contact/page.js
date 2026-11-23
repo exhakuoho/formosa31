@@ -45,13 +45,13 @@ export default function ContactPage() {
           <div style={{ fontFamily: "var(--font-noto-sans-tc)", fontSize: 14 }}>Email 信箱</div>
           <div style={{ fontFamily: "var(--font-jost)", fontSize: 12, color: "#C2A468", marginTop: 6 }}>{STORE.email}</div>
         </a>
-        <a href="#" className="f31-channelCard-line" style={channelCard}>
+        {STORE.lineUrl && <a href={STORE.lineUrl} className="f31-channelCard-line" style={channelCard}>
           <div style={{ color: "#06C755", display: "flex", justifyContent: "center", marginBottom: 12 }}>
             <Icon name="chat" />
           </div>
           <div style={{ fontFamily: "var(--font-noto-sans-tc)", fontSize: 14 }}>LINE 線上諮詢</div>
-          <div style={{ fontFamily: "var(--font-jost)", fontSize: 13, color: "#06C755", marginTop: 6 }}>@formosa31</div>
-        </a>
+          <div style={{ fontFamily: "var(--font-jost)", fontSize: 13, color: "#06C755", marginTop: 6 }}>開啟 LINE</div>
+        </a>}
         <div style={{ border: "1px solid rgba(255,255,255,0.12)", padding: "30px 24px", textAlign: "center" }}>
           <div style={{ color: "#C2A468", display: "flex", justifyContent: "center", marginBottom: 12 }}>
             <Icon name="clock" />
@@ -97,9 +97,9 @@ export default function ContactPage() {
           </div>
         </div>
         <div style={{ background: "#0F1826", border: "1px solid rgba(255,255,255,0.10)", padding: 44 }}>
-          <h2 style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 400, fontSize: 22, margin: "0 0 6px", letterSpacing: "0.5px" }}>預約賞錶 / 詢價表單</h2>
-          <p style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 300, fontSize: 13, color: "#828D9C", margin: "0 0 30px" }}>填寫後門市專人將盡快與您聯繫</p>
-          <InquiryForm variant="contact" />
+          <h2 style={{ fontFamily: "var(--font-noto-sans-tc)", fontWeight: 400, fontSize: 22, margin: "0 0 6px", letterSpacing: "0.5px" }}>預約賞錶 / 詢價</h2>
+
+          <div id="inquiry" style={{scrollMarginTop:90}}><InquiryForm variant="contact" /></div>
         </div>
       </section>
 

@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import PlaceholderImage from "@/components/PlaceholderImage";
 import { Icon } from "@/components/Icons";
 import { resolveMarketingImage } from "@/lib/marketingImages";
-import { SERVICE_ITEMS, REPAIR_FLOW, FAQ } from "@/lib/seedData";
+import { SERVICE_ITEMS, REPAIR_FLOW, FAQ, STORE } from "@/lib/seedData";
 
 export const metadata = {
   title: "門市專業服務",
@@ -216,9 +216,9 @@ export default function ServicesPage() {
             <Link href="/contact" style={btnOutline}>
               查看門市位置
             </Link>
-            <a href="#" style={{ ...btnBase, color: "#06C755", border: "1px solid #06C755", display: "inline-flex", alignItems: "center" }}>
+            {STORE.lineUrl && <a href={STORE.lineUrl} style={{ ...btnBase, color: "#06C755", border: "1px solid #06C755", display: "inline-flex", alignItems: "center" }}>
               加入 LINE 諮詢
-            </a>
+            </a>}
           </div>
         </div>
       </section>

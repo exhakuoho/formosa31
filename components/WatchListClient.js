@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import useCatalog from "./useCatalog";
 import WatchCard from "./WatchCard";
 import { KEYWORD_LIST } from "@/lib/seedData";
 
@@ -27,31 +27,15 @@ const kwChipBase = {
   background: "transparent",
 };
 
-export default function WatchListClient({ products, brandOptions }) {
-  const [searchText, setSearchText] = useState("");
-  const [activeBrand, setActiveBrand] = useState("全部 All");
-  const [activeKw, setActiveKw] = useState([]);
-
-  const listResults = useMemo(() => {
-    const q = searchText.trim().toLowerCase();
-    return products.filter((p) => {
-      const matchQ = !q || `${p.brand} ${p.brandZh} ${p.line} ${p.model} ${(p.kw || []).join(" ")}`.toLowerCase().includes(q);
-      const matchB = activeBrand === "全部 All" || p.brand === activeBrand;
-      const matchK = activeKw.length === 0 || activeKw.every((k) => (p.kw || []).includes(k));
-      return matchQ && matchB && matchK;
-    });
-  }, [products, searchText, activeBrand, activeKw]);
-
-  const toggleKw = (k) => {
-    setActiveKw((cur) => (cur.includes(k) ? cur.filter((x) => x !== k) : [...cur, k]));
-  };
-
-  const clearFilters = () => {
-    setSearchText("");
-    setActiveBrand("全部 All");
-    setActiveKw([]);
-  };
-
+export default function WatchListClient({brandOptions,seriesByBrand,...props}) {
+  const {query,apply,count,pages,current,pageLink,error,loading,retry,visible} = useCatalog(props);
+  const searchText = query.get("q") || "";
+  const activeBrand = query.get("brand") || "全部 All";
+  const activeKw = query.getAll("kw");
+  const setSearchText = q => apply({q});
+  const setActiveBrand = brand => apply({brand:brand === "全部 All" ? "" : brand,series:""});
+  const toggleKw = k => apply({kw:activeKw.includes(k) ? activeKw.filter(x=>x!==k) : [...activeKw,k]});
+  const clearFilters = () => apply({q:"",brand:"",kw:[],series:"",size:"",budget:"",sort:""});
   return (
     <>
       {/* page title */}
@@ -142,18 +126,25 @@ export default function WatchListClient({ products, brandOptions }) {
         </div>
       </section>
 
+      <div className="catalog-options">
+        <label>系列<select value={query.get("series") || ""} onChange={e=>apply({series:e.target.value})}><option value="">全部系列</option>
+          {(seriesByBrand[activeBrand] || [...new Set(Object.values(seriesByBrand).flat())]).map(v=><option key={v}>{v}</option>)}</select></label>
+        <label>預算<select value={query.get("budget") || ""} onChange={e=>apply({budget:e.target.value})}><option value="">不限預算</option><option value="50000">未滿 5 萬</option><option value="100000">未滿 10 萬</option><option value="200000">未滿 20 萬</option><option value="inquire">歡迎詢價</option></select></label>
+        <label>錶徑<select value={query.get("size") || ""} onChange={e=>apply({size:e.target.value})}><option value="">不限錶徑</option><option value="small">小於 36 mm</option><option value="medium">36–40 mm</option><option value="large">大於 40 mm</option></select></label>
+        <label>排序<select value={query.get("sort") || ""} onChange={e=>apply({sort:e.target.value})}><option value="">原始排序</option><option value="asc">價格由低到高</option><option value="desc">價格由高到低</option></select></label>
+      </div>
       {/* result count */}
       <section style={{ maxWidth: 1280, margin: "0 auto", padding: "28px 40px 0" }}>
         <div style={{ fontFamily: "var(--font-noto-sans-tc)", fontSize: 13, color: "#828D9C", letterSpacing: "1px" }}>
-          共 <span style={{ color: "#C2A468" }}>{listResults.length}</span> 款符合條件
+          {loading ? (error ? <button onClick={retry}>重新載入商品索引</button> : "正在載入商品索引…") : <>共 <span style={{ color: "#C2A468" }}>{count}</span> 款符合條件</>}
         </div>
       </section>
 
       {/* grid */}
       <section style={{ maxWidth: 1280, margin: "0 auto", padding: "24px 40px 100px" }}>
-        {listResults.length > 0 ? (
+        {loading ? null : visible.length > 0 ? (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(270px,1fr))", gap: 28 }}>
-            {listResults.map((w) => (
+            {visible.map((w) => (
               <WatchCard key={w.id} product={w} showKeywords />
             ))}
           </div>
@@ -169,6 +160,11 @@ export default function WatchListClient({ products, brandOptions }) {
             </button>
           </div>
         )}
+        {!loading && pages > 1 && <nav className="catalog-pages" aria-label="商品分頁">
+          {current > 1 && <a href={pageLink(current-1)} rel="prev">← 上一頁</a>}
+          <span>第 {current} / {pages} 頁</span>
+          {current < pages && <a href={pageLink(current+1)} rel="next">下一頁 →</a>}
+        </nav>}
       </section>
     </>
   );

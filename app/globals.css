@@ -60,7 +60,7 @@ textarea::placeholder {
 }
 
 @media (max-width: 720px) {
-  header nav {
+  header > div > nav {
     display: none !important;
   }
   header > div {
@@ -163,4 +163,23 @@ textarea::placeholder {
   * {
     scroll-behavior: auto !important;
   }
+}
+
+.mobile-menu {display:none}
+.catalog-options, .catalog-pages {max-width:1280px;margin:auto;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.catalog-options {padding:20px clamp(20px,4vw,40px)}
+.catalog-options label {display:grid;gap:6px;font-size:13px;color:var(--silver);min-width:0}
+.catalog-options select {background:var(--panel);color:var(--cream);padding:9px;border:1px solid var(--line);max-width:min(72vw,300px)}
+.catalog-pages {justify-content:center;margin-top:34px;color:var(--silver)}
+.catalog-pages a,.inquiry-links a {padding:12px 16px;color:var(--gold);border:1px solid var(--line)}
+.inquiry-links {display:flex;gap:12px;flex-wrap:wrap}
+@media(max-width:720px){
+  .mobile-menu {display:block;margin-left:auto;margin-right:10px}
+  .mobile-menu summary {cursor:pointer;font-size:14px;padding:10px 6px;color:var(--cream)}
+  .mobile-menu nav {position:absolute;top:100%;left:0;right:0;background:var(--panel);border-bottom:1px solid var(--line);display:grid;padding:8px 22px 18px}
+  .mobile-menu a {padding:13px;color:var(--cream)}
+  .mobile-menu a[aria-current] {color:var(--gold)}
+  header > div {padding-inline:12px!important}
+  header > div > a:first-child {gap:5px!important;font-size:17px!important;letter-spacing:2px!important}
+  header > div > a:last-child {padding:10px!important;letter-spacing:1px!important}
 }

@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { STORE } from "@/lib/seedData";
 
 // The contact / appointment form posts directly to Web3Forms, which emails
@@ -23,6 +24,18 @@ const fieldStyle = (borderOpacity) => ({
 });
 
 export default function InquiryForm({ variant = "contact" }) {
+  return <Suspense fallback={<a href={STORE.phoneHref}>致電門市 {STORE.phone}</a>}><InquiryContext variant={variant} /></Suspense>;
+}
+function InquiryContext({variant}) {
+  const query = useSearchParams();
+  const id = (query.get("watch") || "").slice(0,100);
+  const name = (query.get("name") || query.get("brand") || "").slice(0,160);
+  const ref = (query.get("ref") || "").slice(0,100);
+  const url = id ? "https://formosa31.com/watches/" + encodeURIComponent(id) : "";
+  const subject = [name,ref].filter(Boolean).join(" · ");
+  return <InquiryFields key={subject+url} variant={variant} subject={subject} url={url} />;
+}
+function InquiryFields({variant,subject,url}) {
   const [status, setStatus] = useState({ state: "idle", message: "" });
   const border = variant === "home" ? 0.1 : 0.16;
 
@@ -40,8 +53,9 @@ export default function InquiryForm({ variant = "contact" }) {
     }
 
     setStatus({ state: "sending", message: "" });
+    if (url) data.append("商品網址", url);
     data.append("access_key", WEB3FORMS_KEY);
-    data.append("subject", `FORMOSA31 網站詢價（${variant === "home" ? "首頁" : "聯絡頁"}）`);
+    data.append("subject", `FORMOSA31 網站詢價 ${subject}（${variant === "home" ? "首頁" : "聯絡頁"}）`);
     data.append("from_name", "FORMOSA31 網站表單");
 
     try {
@@ -62,6 +76,13 @@ export default function InquiryForm({ variant = "contact" }) {
     }
   }
 
+  if (!WEB3FORMS_KEY) {
+    const email = "mailto:"+STORE.email+"?"+new URLSearchParams({subject:"FORMOSA31 賞錶／詢價 "+subject,body:[subject,url].filter(Boolean).join("\n")}).toString().replaceAll("+","%20");
+    return <div>{subject && <p>{subject}</p>}
+      <p>可致電門市，或用電子郵件詢價。</p><div className="inquiry-links">
+        <a href={STORE.phoneHref}>致電 {STORE.phone}</a><a href={email}>以 Email 詢價</a>
+      </div></div>;
+  }
   const sending = status.state === "sending";
 
   return (
@@ -82,6 +103,7 @@ export default function InquiryForm({ variant = "contact" }) {
 
       <input
         name="諮詢項目"
+        defaultValue={subject}
         placeholder={variant === "home" ? "有興趣的錶款 / 服務 Interest" : "諮詢項目（錶款 / 維修 / 保養 / 送禮）"}
         style={fieldStyle(border)}
       />
