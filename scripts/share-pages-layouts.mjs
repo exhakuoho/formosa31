@@ -14,7 +14,7 @@ try {
   process.exit(0);
 } catch (err) { if (err.code !== "ENOENT") throw err; }
 const directories = (await fs.readdir(watches, {withFileTypes:true})).filter(d=>d.isDirectory());
-const candidates = ["__next._index.txt","__next.watches.txt","__next.watches/$d$id.txt"];
+const candidates = ["__next._index.txt","__next.watches.txt"];
 const rules = [];
 const duplicates = [];
 for (const name of candidates) {
